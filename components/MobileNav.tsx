@@ -4,9 +4,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
@@ -46,29 +43,28 @@ const MobileNav = () => {
               <section className="flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((item) => {
                   const isActive =
-                    pathName === item.route ||
-                    pathName.startsWith(`${item.route}`);
+                    pathName === item.route
                   return (
-                    <Link
-                      href={item.route}
-                      key={item.label}
-                      className={cn(
-                        "flex gap-4 items-center p-4 rounded-lg justify-start",
-                        {
-                          "bg-blue-1": isActive,
-                        }
-                      )}
-                    >
-                      <Image
-                        src={item.imgUrl}
-                        alt={item.label}
-                        width={24}
-                        height={24}
-                      />
-                      <p className="text-lg font-semibold max-lg:hidden">
-                        {item.label}
-                      </p>
-                    </Link>
+                    <SheetClose asChild key={item.route}>
+                      <Link
+                        href={item.route}
+                        key={item.label}
+                        className={cn(
+                          "flex gap-4 items-center p-4 rounded-lg w-full max-w-60",
+                          {
+                            "bg-blue-1": isActive,
+                          }
+                        )}
+                      >
+                        <Image
+                          src={item.imgUrl}
+                          alt={item.label}
+                          width={20}
+                          height={20}
+                        />
+                        <p className=" font-semibold">{item.label}</p>
+                      </Link>
+                    </SheetClose>
                   );
                 })}
               </section>
