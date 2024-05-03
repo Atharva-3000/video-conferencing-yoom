@@ -35,7 +35,7 @@ const PersonalRoom = () => {
 
   const meetingId = user?.id;
 
-  const { call } = useGetCallById(meetingId!);
+  const { calls: call } = useGetCallById(meetingId!);
 
   const startRoom = async () => {
     if (!client || !user) return;
